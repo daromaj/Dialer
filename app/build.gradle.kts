@@ -130,6 +130,14 @@ detekt {
     ignoreFailures = true
 }
 
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    this.jvmTarget = project.libs.versions.app.build.kotlinJVMTarget.get()
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
+    this.jvmTarget = project.libs.versions.app.build.kotlinJVMTarget.get()
+}
+
 dependencies {
     implementation(libs.indicator.fast.scroll)
     implementation(libs.autofit.text.view)
